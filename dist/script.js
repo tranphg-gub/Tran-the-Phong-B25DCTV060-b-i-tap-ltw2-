@@ -8,7 +8,7 @@ function setTheme(theme) {
   root.dataset.theme = theme;
   localStorage.setItem('sepp-theme', theme);
   themeButton.setAttribute('aria-label', theme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối');
-  themeMeta.setAttribute('content', theme === 'dark' ? '#11241f' : '#f2f0e9');
+  themeMeta.setAttribute('content', theme === 'dark' ? '#101816' : '#f6f5f1');
 }
 setTheme(savedTheme || (preferredDark ? 'dark' : 'light'));
 themeButton.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
