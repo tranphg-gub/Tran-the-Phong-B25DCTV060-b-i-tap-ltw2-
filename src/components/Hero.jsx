@@ -1,3 +1,5 @@
+import React from 'react'
+
 function Hero({ onExplore }) {
   return (
     <section className="cv-hero shell" aria-labelledby="cv-title">

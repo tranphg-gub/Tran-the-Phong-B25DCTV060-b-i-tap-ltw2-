@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CVPage from './components/CVPage'
 import Calculator from './components/Calculator'
 
@@ -25,6 +25,11 @@ function App() {
   const [activeView, setActiveView] = useState('calculator')
   const [theme, setTheme] = useState(() => localStorage.getItem('sepp-theme') || 'light')
 
+  const changeView = (view) => {
+    setActiveView(view)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     localStorage.setItem('sepp-theme', theme)
@@ -32,7 +37,7 @@ function App() {
 
   return (
     <>
-      <AppHeader activeView={activeView} onChangeView={setActiveView} theme={theme} onToggleTheme={() => setTheme(value => value === 'dark' ? 'light' : 'dark')} />
+      <AppHeader activeView={activeView} onChangeView={changeView} theme={theme} onToggleTheme={() => setTheme(value => value === 'dark' ? 'light' : 'dark')} />
       <main>
         {activeView === 'cv' ? <CVPage /> : <Calculator />}
       </main>

@@ -1,3 +1,5 @@
+import React from 'react'
+
 function CalculatorButton({ label, onClick, variant = 'number', span = 1, ariaLabel }) {
   return (
     <button

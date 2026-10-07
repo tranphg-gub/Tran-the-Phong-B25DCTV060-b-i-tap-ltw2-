@@ -1,3 +1,4 @@
+import React from 'react'
 import ContactForm from './ContactForm'
 import Hero from './Hero'
 import ProjectList from './ProjectList'

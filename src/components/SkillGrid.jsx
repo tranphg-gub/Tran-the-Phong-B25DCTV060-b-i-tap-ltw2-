@@ -1,3 +1,5 @@
+import React from 'react'
+
 function SkillCard({ skill, index }) {
   return (
     <article className="skill-card">

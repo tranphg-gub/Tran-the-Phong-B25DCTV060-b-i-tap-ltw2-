@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const initialForm = { name: '', email: '', topic: '', message: '', consent: false }
 

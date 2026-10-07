@@ -1,3 +1,5 @@
+import React from 'react'
+
 function Section({ number, label, title, className = '', children }) {
   return (
     <section className={`cv-section ${className}`}>
