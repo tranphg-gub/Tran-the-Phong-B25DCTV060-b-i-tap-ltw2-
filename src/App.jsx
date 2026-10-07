@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import CVPage from './components/CVPage'
+import Calculator from './components/Calculator'
 
 function AppHeader({ activeView, onChangeView, theme, onToggleTheme }) {
   return (
@@ -33,13 +34,7 @@ function App() {
     <>
       <AppHeader activeView={activeView} onChangeView={setActiveView} theme={theme} onToggleTheme={() => setTheme(value => value === 'dark' ? 'light' : 'dark')} />
       <main>
-        {activeView === 'cv' ? <CVPage /> : (
-          <section className="placeholder shell" aria-labelledby="page-title">
-            <p className="eyebrow">Bài tập React · B25DCTV060</p>
-            <h1 id="page-title">Virtual Calculator</h1>
-            <p>Máy tính tương tác sẽ xuất hiện ở đây.</p>
-          </section>
-        )}
+        {activeView === 'cv' ? <CVPage /> : <Calculator />}
       </main>
     </>
   )
