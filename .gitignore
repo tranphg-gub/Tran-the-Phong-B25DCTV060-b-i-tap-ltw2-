@@ -1,7 +1,3 @@
 site-deploy.zip
 .openai/
-node_modules/
-dist/
-.sites-runtime/
-
 
