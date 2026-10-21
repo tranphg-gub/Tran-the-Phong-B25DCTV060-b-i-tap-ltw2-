@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import useFetch from './useFetch'
-import { ThemeProvider, useTheme } from './ThemeContext'
+import React, { ThemeProvider, useTheme } from './ThemeContext'
 const empty = { studentCode: '', name: '', email: '', className: '', gpa: '' }
 function Students() {
   const { theme, toggleTheme } = useTheme()
@@ -45,4 +45,3 @@ function Students() {
     <section><h2>Danh sách sinh viên ({rows.length})</h2><label>Tìm theo mã, tên, email hoặc lớp<input value={query} onChange={e => setQuery(e.target.value)} /></label><button disabled={!url || loading || busy} onClick={reload}>Tải lại</button>{loading && <p role="status">Đang tải dữ liệu...</p>}{error && <p role="alert">{error}</p>}{!url && <p>Nhập URL MockAPI để bắt đầu.</p>}<div className="table"><table><thead><tr>{['Mã sinh viên','Họ và tên','Email','Lớp','GPA','Thao tác'].map(t => <th key={t}>{t}</th>)}</tr></thead><tbody>{rows.map(s => <tr key={s.id}><td>{s.studentCode}</td><td>{s.name}</td><td>{s.email}</td><td>{s.className}</td><td>{s.gpa}</td><td><button disabled={busy || loading} onClick={() => { setEditId(s.id); setForm(Object.fromEntries(Object.keys(empty).map(k => [k,String(s[k] ?? '')]))) }}>Sửa</button><button disabled={busy || loading} onClick={() => { if (confirm(`Xóa sinh viên ${s.name}?`)) mutate('DELETE', s.id) }}>Xóa</button></td></tr>)}</tbody></table></div>{url && !loading && !error && !rows.length && <p>Không có sinh viên phù hợp.</p>}</section></div><p role="status">{message}</p></main>
 }
 export default function App() { return <ThemeProvider><Students /></ThemeProvider> }
-
