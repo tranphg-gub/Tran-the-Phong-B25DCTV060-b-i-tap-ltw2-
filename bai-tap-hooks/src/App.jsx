@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import useFetch from './useFetch'
-import React, { ThemeProvider, useTheme } from './ThemeContext'
+import { ThemeProvider, useTheme } from './ThemeContext'
 const empty = { studentCode: '', name: '', email: '', className: '', gpa: '' }
 function Students() {
   const { theme, toggleTheme } = useTheme()
