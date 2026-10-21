@@ -4,8 +4,8 @@ import { ThemeProvider, useTheme } from './ThemeContext'
 const empty = { studentCode: '', name: '', email: '', className: '', gpa: '' }
 function Students() {
   const { theme, toggleTheme } = useTheme()
-  const [url, setUrl] = useState(localStorage.getItem('student-api') || '')
-  const [draftUrl, setDraftUrl] = useState(url)
+  const [url, setUrl] = useState(localStorage.getItem('student-api') || '/data/students.json')
+  const [draftUrl, setDraftUrl] = useState(url.startsWith('/') ? '' : url)
   const { data, loading, error, reload } = useFetch(url)
   const [form, setForm] = useState(empty)
   const [editId, setEditId] = useState(null)
@@ -25,6 +25,12 @@ function Students() {
   async function mutate(method, id, body) {
     setBusy(true); setMessage('')
     try {
+      if (url === '/data/students.json') {
+        const current = JSON.parse(localStorage.getItem('student-local-data') || JSON.stringify(data))
+        const next = method === 'POST' ? [...current, { ...body, id: crypto.randomUUID() }] : method === 'PUT' ? current.map(s => String(s.id) === String(id) ? { ...s, ...body } : s) : current.filter(s => String(s.id) !== String(id))
+        localStorage.setItem('student-local-data', JSON.stringify(next))
+        setMessage('Đã lưu trên trình duyệt.'); setForm(empty); setEditId(null); reload(); return
+      }
       const response = await fetch(id == null ? url : `${url}/${encodeURIComponent(id)}`, { method, headers: { 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) })
       if (!response.ok) throw new Error(`Thao tác thất bại (${response.status})`)
       setMessage('Đã lưu thay đổi.'); setForm(empty); setEditId(null); reload()
@@ -40,7 +46,7 @@ function Students() {
     mutate(editId == null ? 'POST' : 'PUT', editId, { ...cleaned, gpa })
   }
   return <main><header><div><p>BÀI TẬP BUỔI 9 · REACT HOOKS</p><h1>Quản lý sinh viên</h1></div><button onClick={toggleTheme}>Chế độ {theme === 'light' ? 'tối' : 'sáng'}</button></header>
-    <section><h2>Kết nối dữ liệu</h2><form onSubmit={connect} className="connection"><label>URL resource MockAPI<input type="url" required value={draftUrl} onChange={e => setDraftUrl(e.target.value)} placeholder="https://project.mockapi.io/students" /></label><button disabled={busy || loading}>Kết nối</button></form></section>
+    <section><h2>Kết nối dữ liệu</h2><p>{url.startsWith('/') ? 'Đang dùng file JSON mẫu; thay đổi được lưu trên trình duyệt này.' : 'Đang dùng MockAPI.'}</p><button disabled={busy || loading} onClick={() => { setUrl('/data/students.json'); localStorage.removeItem('student-api'); setForm(empty); setEditId(null); reload() }}>Dùng file dữ liệu mẫu</button><form onSubmit={connect} className="connection"><label>URL resource MockAPI<input type="url" required value={draftUrl} onChange={e => setDraftUrl(e.target.value)} placeholder="https://project.mockapi.io/students" /></label><button disabled={busy || loading}>Kết nối</button></form></section>
     <div className="layout"><section><h2>{editId == null ? 'Thêm sinh viên' : 'Sửa sinh viên'}</h2><form onSubmit={save}><fieldset disabled={!url || busy || loading}>{[['studentCode','Mã sinh viên'],['name','Họ và tên'],['email','Email'],['className','Lớp'],['gpa','GPA (0 đến 4)']].map(([key,label]) => <label key={key}>{label}<input required maxLength={150} type={key === 'gpa' ? 'number' : key === 'email' ? 'email' : 'text'} min={key === 'gpa' ? 0 : undefined} max={key === 'gpa' ? 4 : undefined} step={key === 'gpa' ? 'any' : undefined} value={form[key]} onChange={e => setForm({ ...form, [key]: e.target.value })} /></label>)}<button>{busy ? 'Đang lưu...' : editId == null ? 'Thêm sinh viên' : 'Lưu thay đổi'}</button><button type="button" onClick={() => { setForm(empty); setEditId(null) }}>Hủy</button></fieldset></form></section>
     <section><h2>Danh sách sinh viên ({rows.length})</h2><label>Tìm theo mã, tên, email hoặc lớp<input value={query} onChange={e => setQuery(e.target.value)} /></label><button disabled={!url || loading || busy} onClick={reload}>Tải lại</button>{loading && <p role="status">Đang tải dữ liệu...</p>}{error && <p role="alert">{error}</p>}{!url && <p>Nhập URL MockAPI để bắt đầu.</p>}<div className="table"><table><thead><tr>{['Mã sinh viên','Họ và tên','Email','Lớp','GPA','Thao tác'].map(t => <th key={t}>{t}</th>)}</tr></thead><tbody>{rows.map(s => <tr key={s.id}><td>{s.studentCode}</td><td>{s.name}</td><td>{s.email}</td><td>{s.className}</td><td>{s.gpa}</td><td><button disabled={busy || loading} onClick={() => { setEditId(s.id); setForm(Object.fromEntries(Object.keys(empty).map(k => [k,String(s[k] ?? '')]))) }}>Sửa</button><button disabled={busy || loading} onClick={() => { if (confirm(`Xóa sinh viên ${s.name}?`)) mutate('DELETE', s.id) }}>Xóa</button></td></tr>)}</tbody></table></div>{url && !loading && !error && !rows.length && <p>Không có sinh viên phù hợp.</p>}</section></div><p role="status">{message}</p></main>
 }

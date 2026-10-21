@@ -38,3 +38,5 @@ ThemeContext cung cấp sáng/tối qua useContext; lựa chọn được lưu b
 Thêm GPA 0 và 4; chặn GPA âm, lớn hơn 4 và trường trống. Sửa sinh viên GPA 0 phải giữ nguyên số 0. Thử mã trùng, tìm tên, hủy xóa và xác nhận xóa. Kiểm tra tải lại dữ liệu, endpoint sai, chuyển theme và tải lại trang.
 
 Build đã được kiểm tra trong môi trường hiện tại. Chưa có endpoint MockAPI thật nên chưa xác minh CRUD trực tiếp với dịch vụ. Kiểm tra mã trùng ở trình duyệt không thay thế ràng buộc duy nhất phía máy chủ.
+
+Chế độ dùng thử: mặc định tải public/data/students.json qua useFetch với 3 sinh viên hư cấu. Thêm/sửa/xóa lưu trong localStorage, không ghi lại file JSON gốc. Chế độ này dùng thử local; để đáp ứng phần MockAPI của đề vẫn cần kết nối resource thật.

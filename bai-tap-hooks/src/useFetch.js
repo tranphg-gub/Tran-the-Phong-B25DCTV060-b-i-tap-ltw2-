@@ -13,7 +13,9 @@ export default function useFetch(url) {
     setLoading(true)
     fetch(url, { signal: controller.signal }).then(async response => {
       if (!response.ok) throw new Error(`Không tải được dữ liệu (${response.status})`)
-      const result = await response.json()
+      const source = await response.json()
+      const saved = url === '/data/students.json' ? localStorage.getItem('student-local-data') : null
+      const result = saved ? JSON.parse(saved) : source
       if (!Array.isArray(result)) throw new Error('Resource phải trả về danh sách sinh viên')
       if (!controller.signal.aborted) setData(result)
     }).catch(e => { if (!controller.signal.aborted) setError(e.message) })
@@ -22,4 +24,3 @@ export default function useFetch(url) {
   }, [url, revision])
   return { data, loading, error, reload }
 }
-

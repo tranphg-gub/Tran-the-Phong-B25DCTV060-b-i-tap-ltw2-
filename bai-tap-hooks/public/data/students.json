@@ -1,0 +1,5 @@
+[
+  {"id":"1","studentCode":"SV001","name":"Nguyễn Văn An","email":"an@example.com","className":"CNTT01","gpa":3.2},
+  {"id":"2","studentCode":"SV002","name":"Trần Thu Hà","email":"ha@example.com","className":"CNTT01","gpa":3.6},
+  {"id":"3","studentCode":"SV003","name":"Lê Minh Đức","email":"duc@example.com","className":"CNTT02","gpa":2.8}
+]
