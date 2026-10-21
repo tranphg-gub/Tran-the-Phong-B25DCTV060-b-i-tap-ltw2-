@@ -1,9 +1,40 @@
-# Quản lý sinh viên bằng Hooks
+# Bài tập Buổi 9: Quản lý sinh viên bằng Hooks
 
-Chạy `npm install` rồi `npm run dev` trong thư mục này. Build bằng `npm run build`.
+## Chạy bài
 
-Tạo resource students trên MockAPI với các trường studentCode, name, email, className kiểu String. Dán URL HTTPS của resource vào phần Kết nối dữ liệu. Ứng dụng không chứa URL hoặc dữ liệu giả mặc định.
+Trong thư mục bai-tap-hooks:
 
-Các chức năng: tải danh sách qua useFetch, thêm/sửa/xóa qua API, tìm kiếm, kiểm tra trường bắt buộc và mã trùng trong danh sách hiện tại. ThemeContext quản lý sáng/tối và lưu lựa chọn trên trình duyệt. Có trạng thái tải, lỗi và xác nhận xóa. Không có icon hoặc comment trong mã nguồn bài này.
+```
+npm install
+npm run dev
+```
 
-Chưa có mã bài Buổi 8 và endpoint thực tế để đối chiếu yêu cầu gốc hoặc kiểm thử với dữ liệu thật. Kiểm tra mã trùng phía trình duyệt không thay thế ràng buộc duy nhất phía máy chủ.
+Build bằng `npm run build`.
+
+## Cấu hình MockAPI
+
+Tạo resource students trên MockAPI với các trường:
+
+| Trường | Kiểu |
+| --- | --- |
+| studentCode | String |
+| name | String |
+| email | String |
+| className | String |
+| gpa | Number |
+
+MockAPI tự cấp id. Dán URL HTTPS đầy đủ của resource vào phần Kết nối dữ liệu. URL được lưu trong trình duyệt; không có endpoint hoặc dữ liệu giả mặc định. Không nhập mật khẩu hoặc token vào URL.
+
+## Nội dung bài
+
+Kế thừa Buổi 8: thêm, sửa, xóa có xác nhận; tìm theo tên; GPA bắt buộc từ 0 đến 4; mã sinh viên không trùng trong danh sách hiện tại. Bổ sung email và lớp, cho phép tìm theo cả mã, email và lớp.
+
+useState quản lý form và trạng thái giao diện. useMemo lọc danh sách. Custom hook useFetch dùng useEffect và AbortController để tải danh sách từ MockAPI, xử lý đang tải, lỗi và hủy request khi đổi URL hoặc unmount. POST, PUT, DELETE ghi lên API và tải lại danh sách sau khi thành công.
+
+ThemeContext cung cấp sáng/tối qua useContext; lựa chọn được lưu bằng localStorage. Mã nguồn bài không có icon hoặc comment.
+
+## Kiểm tra
+
+Thêm GPA 0 và 4; chặn GPA âm, lớn hơn 4 và trường trống. Sửa sinh viên GPA 0 phải giữ nguyên số 0. Thử mã trùng, tìm tên, hủy xóa và xác nhận xóa. Kiểm tra tải lại dữ liệu, endpoint sai, chuyển theme và tải lại trang.
+
+Build đã được kiểm tra trong môi trường hiện tại. Chưa có endpoint MockAPI thật nên chưa xác minh CRUD trực tiếp với dịch vụ. Kiểm tra mã trùng ở trình duyệt không thay thế ràng buộc duy nhất phía máy chủ.

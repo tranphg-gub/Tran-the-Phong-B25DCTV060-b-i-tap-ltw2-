@@ -15,10 +15,11 @@ export default function useFetch(url) {
       if (!response.ok) throw new Error(`Không tải được dữ liệu (${response.status})`)
       const result = await response.json()
       if (!Array.isArray(result)) throw new Error('Resource phải trả về danh sách sinh viên')
-      setData(result)
+      if (!controller.signal.aborted) setData(result)
     }).catch(e => { if (!controller.signal.aborted) setError(e.message) })
       .finally(() => { if (!controller.signal.aborted) setLoading(false) })
     return () => controller.abort()
   }, [url, revision])
   return { data, loading, error, reload }
 }
+
