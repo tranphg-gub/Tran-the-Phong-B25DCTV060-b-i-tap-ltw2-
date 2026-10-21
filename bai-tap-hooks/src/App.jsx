@@ -4,7 +4,7 @@ import { ThemeProvider, useTheme } from './ThemeContext'
 const empty = { studentCode: '', name: '', email: '', className: '', gpa: '' }
 function Students() {
   const { theme, toggleTheme } = useTheme()
-  const [url, setUrl] = useState(localStorage.getItem('student-api') || '/data/students.json')
+  const [url, setUrl] = useState(localStorage.getItem('student-api') || 'https://6ad8d859f89c5702ed9a3331.mockapi.io/students')
   const [draftUrl, setDraftUrl] = useState(url.startsWith('/') ? '' : url)
   const { data, loading, error, reload } = useFetch(url)
   const [form, setForm] = useState(empty)

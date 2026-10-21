@@ -40,3 +40,5 @@ Thêm GPA 0 và 4; chặn GPA âm, lớn hơn 4 và trường trống. Sửa sin
 Build đã được kiểm tra trong môi trường hiện tại. Chưa có endpoint MockAPI thật nên chưa xác minh CRUD trực tiếp với dịch vụ. Kiểm tra mã trùng ở trình duyệt không thay thế ràng buộc duy nhất phía máy chủ.
 
 Chế độ dùng thử: mặc định tải public/data/students.json qua useFetch với 3 sinh viên hư cấu. Thêm/sửa/xóa lưu trong localStorage, không ghi lại file JSON gốc. Chế độ này dùng thử local; để đáp ứng phần MockAPI của đề vẫn cần kết nối resource thật.
+
+Đã cấu hình MockAPI mặc định: https://6ad8d859f89c5702ed9a3331.mockapi.io/students . Resource đã có 3 sinh viên hư cấu từ file mẫu. Mặc định bài tải dữ liệu thật từ MockAPI qua useFetch; file JSON chỉ dùng khi chủ động chọn chế độ mẫu.
