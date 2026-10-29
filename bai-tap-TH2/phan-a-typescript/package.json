@@ -1,0 +1,16 @@
+{
+  "name": "th2-phan-a-typescript",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --configLoader native --host 127.0.0.1 --port 5174",
+    "build": "tsc --noEmit && vite build --configLoader native && node scripts/tao-ban-mo-ngay.mjs",
+    "preview": "vite preview --configLoader native --host 127.0.0.1 --port 5274",
+    "check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "vite": "7.3.6",
+    "typescript": "5.9.3"
+  }
+}

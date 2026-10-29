@@ -1,0 +1,142 @@
+export const books = [
+  {
+    "id": "1",
+    "title": "Dế Mèn phiêu lưu ký",
+    "author": "Tô Hoài",
+    "genre": "Văn học",
+    "year": 1941
+  },
+  {
+    "id": "2",
+    "title": "Tôi thấy hoa vàng trên cỏ xanh",
+    "author": "Nguyễn Nhật Ánh",
+    "genre": "Văn học",
+    "year": 2010
+  },
+  {
+    "id": "3",
+    "title": "Mắt biếc",
+    "author": "Nguyễn Nhật Ánh",
+    "genre": "Văn học",
+    "year": 1990
+  },
+  {
+    "id": "4",
+    "title": "Cho tôi xin một vé đi tuổi thơ",
+    "author": "Nguyễn Nhật Ánh",
+    "genre": "Văn học",
+    "year": 2008
+  },
+  {
+    "id": "5",
+    "title": "Hoàng tử bé",
+    "author": "Antoine de Saint-Exupéry",
+    "genre": "Văn học",
+    "year": 1943
+  },
+  {
+    "id": "6",
+    "title": "Nhà giả kim",
+    "author": "Paulo Coelho",
+    "genre": "Văn học",
+    "year": 1988
+  },
+  {
+    "id": "7",
+    "title": "Cây cam ngọt của tôi",
+    "author": "José Mauro de Vasconcelos",
+    "genre": "Văn học",
+    "year": 1968
+  },
+  {
+    "id": "8",
+    "title": "Lão Hạc",
+    "author": "Nam Cao",
+    "genre": "Văn học",
+    "year": 1943
+  },
+  {
+    "id": "9",
+    "title": "Số đỏ",
+    "author": "Vũ Trọng Phụng",
+    "genre": "Văn học",
+    "year": 1936
+  },
+  {
+    "id": "10",
+    "title": "Tắt đèn",
+    "author": "Ngô Tất Tố",
+    "genre": "Văn học",
+    "year": 1939
+  },
+  {
+    "id": "11",
+    "title": "Lược sử thời gian",
+    "author": "Stephen Hawking",
+    "genre": "Khoa học",
+    "year": 1988
+  },
+  {
+    "id": "12",
+    "title": "Vũ trụ trong vỏ hạt dẻ",
+    "author": "Stephen Hawking",
+    "genre": "Khoa học",
+    "year": 2001
+  },
+  {
+    "id": "13",
+    "title": "Vũ trụ",
+    "author": "Carl Sagan",
+    "genre": "Khoa học",
+    "year": 1980
+  },
+  {
+    "id": "14",
+    "title": "Lược sử vạn vật",
+    "author": "Bill Bryson",
+    "genre": "Khoa học",
+    "year": 2003
+  },
+  {
+    "id": "15",
+    "title": "Tôi tự học",
+    "author": "Nguyễn Duy Cần",
+    "genre": "Kỹ năng",
+    "year": 1959
+  },
+  {
+    "id": "16",
+    "title": "Đắc nhân tâm",
+    "author": "Dale Carnegie",
+    "genre": "Kỹ năng",
+    "year": 1936
+  },
+  {
+    "id": "17",
+    "title": "7 thói quen hiệu quả",
+    "author": "Stephen R. Covey",
+    "genre": "Kỹ năng",
+    "year": 1989
+  },
+  {
+    "id": "18",
+    "title": "Thói quen nguyên tử",
+    "author": "James Clear",
+    "genre": "Kỹ năng",
+    "year": 2018
+  },
+  {
+    "id": "19",
+    "title": "Làm ra làm, chơi ra chơi",
+    "author": "Cal Newport",
+    "genre": "Kỹ năng",
+    "year": 2016
+  },
+  {
+    "id": "20",
+    "title": "Tư duy nhanh và chậm",
+    "author": "Daniel Kahneman",
+    "genre": "Kỹ năng",
+    "year": 2011
+  }
+];
